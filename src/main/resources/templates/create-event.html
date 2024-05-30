@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="datetime-local"] {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+         .error {
+            color: red;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/events/create}">Create Event</a>
+    <a th:href="@{/events}">List Events</a>
+    <a th:href="@{/events/update}">Update Event</a>
+</div>
+<div class="container">
+    <h1>Create Event</h1>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+    <form th:action="@{/events}" th:object="${event}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" /><br/>
+
+        <label for="tournament">Tournament:</label>
+        <input type="text" id="tournament" th:field="*{tournament}" /><br/>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" /><br/>
+
+        <label for="startTime">Start Time:</label>
+        <input type="datetime-local" id="startTime" th:field="*{startTime}" /><br/>
+
+        <label for="home">Home (optional):</label>
+        <input type="text" id="home" th:field="*{home}" /><br/>
+
+        <label for="away">Away (optional):</label>
+        <input type="text" id="away" th:field="*{away}" /><br/>
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+</body>
+</html>
